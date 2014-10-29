@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, :type => :controller do
+  let(:question) { FactoryGirl.create :question }
   it '#index' do
     get :index
     expect(assigns(:questions)).to eq Question.all
@@ -30,6 +31,15 @@ RSpec.describe QuestionsController, :type => :controller do
       expect {
       post :create, { question: {title: "", content: "" } }
       }.to change { Question.count }.by(0)
+    end
+  end
+
+  context '#destroy' do
+    it 'should delete a question' do
+      question
+      expect {
+        post :destroy, { id: question.id }
+      }.to change{ Question.count }.by(-1)
     end
   end
 end
