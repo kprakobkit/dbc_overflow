@@ -1,9 +1,9 @@
-<h1>Question#index</h1>
+<h1>All Questions</h1>
 <ul>
 <% @questions.each do |question| %>
 <li>
-  <p><%= question.title %></p>
-  <p><%= question.content %></p>
+  <p>Question: <%= question.title %></p>
+  <%= link_to 'Show', question_path(question) %>
 </li>
 <% end %>
 </ul>

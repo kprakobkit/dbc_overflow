@@ -7,5 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 10.times do
-  Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+  question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+  5.times do
+    question.answers.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+  end
 end
