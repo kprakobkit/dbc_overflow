@@ -23,13 +23,13 @@ RSpec.describe QuestionsController, :type => :controller do
   context '#create' do
     it 'should create a question with valid params' do
       expect {
-      post :create, { question: {title: "title", content: "content" } }
+        post :create, { question: {title: "title", content: "content" } }
       }.to change { Question.count }.by(1)
     end
 
     it 'should create a question with invalid params' do
       expect {
-      post :create, { question: {title: "", content: "" } }
+        post :create, { question: {title: "", content: "" } }
       }.to change { Question.count }.by(0)
     end
   end
@@ -40,6 +40,26 @@ RSpec.describe QuestionsController, :type => :controller do
       expect {
         post :destroy, { id: question.id }
       }.to change{ Question.count }.by(-1)
+    end
+  end
+
+  context '#edit' do
+    before :each do
+      @question = question
+    end
+
+    it 'should edit a question with valid params' do
+      post :update, { id: @question.id, question: {title: "updated-title", content: "updated-content" } }
+      @question.reload
+      expect(@question.title).to eq("updated-title")
+      expect(@question.content).to eq("updated-content")
+    end
+
+    it 'should edit a question with invalid params' do
+      post :update, { id: @question.id, question: {content: "" } }
+      @question.reload
+      expect(@question.title).to eq("question title")
+      expect(@question.content).to eq("question content")
     end
   end
 end

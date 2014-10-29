@@ -4,7 +4,8 @@
 <li>
   <p>Question: <%= question.title %></p>
   <%= link_to 'Show', question_path(question) %>
+  <%= link_to 'Edit', edit_question_path(question) %>
 </li>
 <% end %>
 </ul>
-<%= render "questions/form" %>
+<%= render 'form' %>
