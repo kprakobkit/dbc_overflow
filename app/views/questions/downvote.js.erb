@@ -1,5 +1,5 @@
 var $currentDiv = "div#" + "<%= (@question.id) %>";
-var currentElementVoteCount = parseInt(<%= @question.vote %>);
+var currentElementVoteCount = parseInt(<%= @question.vote %>, 10);
 var nextElementVoteCount = parseInt($($currentDiv).next().attr("data-vote-count"));
 var previousElementVoteCount = parseInt($($currentDiv).prev().attr("data-vote-count"));
 
@@ -8,4 +8,3 @@ $($currentDiv).attr("data-vote-count", "<%= @question.vote %>")
 if (currentElementVoteCount < nextElementVoteCount) {
   $($currentDiv).insertAfter($($currentDiv).next());
 }
-
