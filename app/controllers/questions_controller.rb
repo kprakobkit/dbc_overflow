@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.all.order(vote: :desc)
     @question = Question.new
     @quote = Quote.get_quote
   end
@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answers = @question.answers.order(vote: :desc)
     @answer = Answer.new
   end
 
@@ -49,6 +50,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.vote += 1
     @question.save
+    @question_id = @question.id
     respond_to do |format|
       format.html{
         redirect_to questions_path
@@ -61,7 +63,12 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.vote -= 1
     @question.save
-    redirect_to questions_path
+    respond_to do |format|
+      format.html{
+        redirect_to questions_path
+      }
+      format.js {}
+    end
   end
 
   def destroy

@@ -9,7 +9,7 @@ describe 'User browsing the website' do
   context "on homepage" do
     it "sees a list of questions" do
       visit root_path
-      expect(page).to have_content("All Questions")
+      expect(page).to have_content("DBC Overflow")
     end
 
     it "can click on the show link of each question and should be on the question show page" do

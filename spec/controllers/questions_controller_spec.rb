@@ -4,7 +4,7 @@ RSpec.describe QuestionsController, :type => :controller do
   let(:question) { FactoryGirl.create :question }
   it '#index' do
     get :index
-    expect(assigns(:questions)).to eq Question.all
+    expect(assigns(:questions)).to eq Question.all.order(vote: :desc)
   end
 
   it '#show' do

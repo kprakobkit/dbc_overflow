@@ -5,6 +5,6 @@
 <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } %>
 <h2>Answers</h2>
 <div class="answers">
-<%= render @question.answers %>
+<%= render @answers %>
 </div>
 <%= render 'answers/form' %>

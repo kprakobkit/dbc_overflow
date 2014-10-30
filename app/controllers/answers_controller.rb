@@ -39,7 +39,12 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer.vote -= 1
     @answer.save
-    redirect_to question_path(@question)
+    respond_to do |format|
+      format.html{
+        redirect_to question_path(@question)
+      }
+      format.js {}
+    end
   end
 
   private
