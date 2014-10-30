@@ -1,7 +1,7 @@
 var $currentDiv = "div#" + "<%= (@answer.id) %>";
 var currentElementVoteCount = parseInt(<%= @answer.vote %>);
-var nextElementVoteCount = $($currentDiv).next().data("vote-count");
-var previousElementVoteCount = $($currentDiv).prev().data("vote-count");
+var nextElementVoteCount = parseInt($($currentDiv).next().attr("data-vote-count"));
+var previousElementVoteCount = parseInt($($currentDiv).prev().attr("data-vote-count"));
 
 $("#" + "<%= (@answer.id) %>" + " .vote").text("Vote: " + "<%= (@answer.vote) %>");
 $($currentDiv).attr("data-vote-count", "<%= @answer.vote %>")

@@ -1,8 +1,7 @@
 var $currentDiv = "div#" + "<%= (@question.id) %>";
 var currentElementVoteCount = parseInt(<%= @question.vote %>);
-// issue is with nextElementVotecount
-var nextElementVoteCount = $($currentDiv).next().data("vote-count");
-var previousElementVoteCount = $($currentDiv).prev().data("vote-count");
+var nextElementVoteCount = parseInt($($currentDiv).next().attr("data-vote-count"));
+var previousElementVoteCount = parseInt($($currentDiv).prev().attr("data-vote-count"));
 
 $("#" + "<%= (@question.id) %>" + " .vote").text("Vote: " + "<%= (@question.vote) %>")
 $($currentDiv).attr("data-vote-count", "<%= @question.vote %>")
