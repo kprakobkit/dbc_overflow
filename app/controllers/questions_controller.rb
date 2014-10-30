@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all.order(created_at: :desc)
+    @questions = Question.all
     @question = Question.new
   end
 
@@ -34,6 +34,20 @@ class QuestionsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def upvote
+    @question = Question.find(params[:id])
+    @question.vote += 1
+    @question.save
+    redirect_to questions_path
+  end
+
+  def downvote
+    @question = Question.find(params[:id])
+    @question.vote -= 1
+    @question.save
+    redirect_to questions_path
   end
 
   def destroy

@@ -62,4 +62,24 @@ RSpec.describe QuestionsController, :type => :controller do
       expect(@question.content).to eq("question content")
     end
   end
+
+  context 'Voting' do
+    before :each do
+      @question = question
+    end
+
+    it 'upvote should increase the vote count' do
+      expect {
+        patch :upvote, { id: @question.id }
+        @question.reload
+      }.to change { @question.vote }.by(1)
+    end
+
+    it 'downvote should increase the vote count' do
+      expect {
+        patch :downvote, { id: @question.id }
+        @question.reload
+      }.to change { @question.vote }.by(-1)
+    end
+  end
 end

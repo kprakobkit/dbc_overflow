@@ -13,6 +13,22 @@ class AnswersController < ApplicationController
     end
   end
 
+  def upvote
+    @answer = Answer.find(params[:id])
+    @question = Question.find(params[:question_id])
+    @answer.vote += 1
+    @answer.save
+    redirect_to question_path(@question)
+  end
+
+  def downvote
+    @answer = Answer.find(params[:id])
+    @question = Question.find(params[:question_id])
+    @answer.vote -= 1
+    @answer.save
+    redirect_to question_path(@question)
+  end
+
   private
 
   def answer_params

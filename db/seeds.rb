@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 10.times do
-  question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+  question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence, vote: rand(1..50))
   5.times do
-    question.answers.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+    question.answers.create(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence, vote: rand(1..60))
   end
 end
