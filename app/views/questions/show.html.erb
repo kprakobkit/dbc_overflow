@@ -3,14 +3,5 @@
 <%= link_to 'Back', questions_path %>
 <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } %>
 <h2>Answers</h2>
-<% @question.answers.each do |answer| %>
-  <p>Title</p>
-  <p><%= answer.title %></p>
-  <p>Content</p>
-  <p><%= answer.content %></p>
-  <p><%= answer.vote %></p>
-  <%= link_to 'Upvote', upvote_question_answer_path(@question, answer), method: :patch %>
-  <%= link_to 'Downvote', downvote_question_answer_path(@question, answer), method: :patch %>
-  <hr />
-<% end %>
+<%= render @question.answers %>
 <%= render 'answers/form' %>
