@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
     @question = Question.new
+    @quote = Quote.get_quote
   end
 
   def new
