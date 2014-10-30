@@ -1,1 +1,11 @@
-$("#" + "<%= (@answer.id) %>" + " .vote").text("Vote: " + "<%= (@answer.vote) %>")
+var $currentDiv = "div#" + "<%= (@answer.id) %>";
+var currentElementVoteCount = parseInt(<%= @answer.vote %>);
+var nextElementVoteCount = $($currentDiv).next().data("vote-count");
+var previousElementVoteCount = $($currentDiv).prev().data("vote-count");
+
+$($currentDiv).attr("data-vote-count", "<%= @answer.vote %>");
+$("#" + "<%= (@answer.id) %>" + " .vote").text("Vote: " + "<%= (@answer.vote) %>");
+debugger
+if (currentElementVoteCount > previousElementVoteCount) {
+  $($currentDiv).insertBefore($($currentDiv).prev());
+}

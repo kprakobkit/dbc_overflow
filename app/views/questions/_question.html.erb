@@ -1,4 +1,4 @@
-<div id="<%= question.id %>">
+<div id="<%= question.id %>" data-vote-count="<%= question.vote %>">
 <p>Question: <%= question.title %></p>
 <p class="vote">Vote: <%= question.vote %></p>
 <%= link_to 'Upvote', upvote_question_path(question), remote: true, method: :patch %>
