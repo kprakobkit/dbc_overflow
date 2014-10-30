@@ -1,7 +1,10 @@
-<h1>Question: <%= @question.title %></h1>
-<h2>Question-Content: <%= @question.content %></h2>
+<h1><%= @question.title %></h1>
+<hr />
+<h2><%= @question.content %></h2>
 <%= link_to 'Back', questions_path %>
 <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } %>
 <h2>Answers</h2>
+<div class="answers">
 <%= render @question.answers %>
+</div>
 <%= render 'answers/form' %>

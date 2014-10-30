@@ -6,10 +6,18 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)
 
-    if @answer.save
-      redirect_to question_path(@question)
-    else
-      render 'questions/show'
+    respond_to do |format|
+      if @answer.save
+        format.html {
+        redirect_to question_path(@question)
+        }
+        format.js {}
+      else
+        format.html {
+        render 'questions/show'
+        }
+        format.js {}
+      end
     end
   end
 

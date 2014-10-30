@@ -17,10 +17,18 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    if @question.save
-      redirect_to question_path(@question)
-    else
-      render 'index'
+    respond_to do |format|
+      if @question.save
+        format.html {
+          redirect_to question_path(@question), notice: 'Question was successfully saved'
+        }
+        format.js {}
+      else
+        format.html {
+          render 'index'
+        }
+        format.js {}
+      end
     end
   end
 

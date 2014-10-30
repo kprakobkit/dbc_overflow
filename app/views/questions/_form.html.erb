@@ -1,11 +1,11 @@
 <h2>New Question</h2>
-<%= form_for @question do |f| %>
-<p>
+<%= form_for @question, remote: true do |f| %>
 <%= f.label :title %>
+<p>
 <%= f.text_field :title %>
 </p>
-<p>
 <%= f.label :content %>
+<p>
 <%= f.text_field :content %>
 </p>
 
