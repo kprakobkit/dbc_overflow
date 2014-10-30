@@ -9,12 +9,12 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         format.html {
-        redirect_to question_path(@question)
+          redirect_to question_path(@question)
         }
         format.js {}
       else
         format.html {
-        render 'questions/show'
+          render 'questions/show'
         }
         format.js {}
       end
@@ -26,7 +26,12 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer.vote += 1
     @answer.save
-    redirect_to question_path(@question)
+    respond_to do |format|
+      format.html{
+        redirect_to question_path(@question)
+      }
+      format.js {}
+    end
   end
 
   def downvote
