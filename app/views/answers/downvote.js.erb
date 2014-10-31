@@ -1,11 +1,10 @@
 var $currentDiv = "div#" + "<%= (@answer.id) %>";
 var currentElementVoteCount = parseInt(<%= @answer.vote %>);
-var nextElementVoteCount = parseInt($($currentDiv).next().attr("data-vote-count"));
-var previousElementVoteCount = parseInt($($currentDiv).prev().attr("data-vote-count"));
+var nextElementVoteCount = function(){ return parseInt($($currentDiv).next().attr("data-vote-count"))};
+var previousElementVoteCount = function(){ return parseInt($($currentDiv).prev().attr("data-vote-count"))};
 
 $("#" + "<%= (@answer.id) %>" + " .vote").text("Vote: " + "<%= (@answer.vote) %>");
 $($currentDiv).attr("data-vote-count", "<%= @answer.vote %>")
-if (currentElementVoteCount < nextElementVoteCount) {
+while (currentElementVoteCount < nextElementVoteCount()) {
   $($currentDiv).insertAfter($($currentDiv).next());
 }
-
