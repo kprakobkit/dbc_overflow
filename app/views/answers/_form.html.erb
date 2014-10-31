@@ -6,8 +6,10 @@
 </p>
 <%= f.label :content %>
 <p>
-<%= f.text_area :content %>
+<%= f.text_area :content, rows: 8, cols: 40, class: "to-markdown" %>
 </p>
+<h1>Preview Area</h1>
+<p class="preview-area"></p>
 
 <%= f.submit %>
 <% end %>

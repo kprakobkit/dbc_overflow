@@ -1,13 +1,16 @@
 <h2>New Question</h2>
-<%= form_for @question, remote: true do |f| %>
+<%= form_for @question, remote: true, :html => { "ng-controller"=>"something" } do |f| %>
 <%= f.label :title %>
 <p>
 <%= f.text_field :title %>
 </p>
 <%= f.label :content %>
 <p>
-<%= f.text_area :content %>
+<%= f.text_area :content, rows: 8, cols: 40, class: "to-markdown" %>
 </p>
+
+<h2>Preview Area</h2>
+<p class="preview-area"></p>
 
 <%= f.submit %>
 <% end %>
