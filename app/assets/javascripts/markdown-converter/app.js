@@ -7,7 +7,7 @@ $(function() {
 
   function parseInputText(inputText) {
     var lines = inputText.split(/\n/);
-    var parsedLines = []
+    var parsedLines = [];
     for (var i = 0; i < lines.length; i++) {
       parsedLines.push(convertToHtml(lines[i]))
     }
@@ -15,15 +15,27 @@ $(function() {
   }
 
   function convertToHtml(line) {
-    if (line.match(/^#*/)) {
-      var numOfH = line.match(/^#*/)[0].length
-      var beginningHTag = "<h" + numOfH + ">"
-      var endHTag = "</h" + numOfH + ">"
-      var parsedLine = line.replace(line.match(/^#*/)[0],'')
-      return (beginningHTag + parsedLine + endHTag)
+    var result_string;
+    if ((/^#+/).test(line)) {
+      var numOfH = line.match(/^#+/)[0].length;
+      var beginningTag = "<h" + numOfH + ">";
+      var endTag = "</h" + numOfH + ">";
+      var parsedLine = line.replace(/\#/g,'');
+      result_string = (beginningTag + parsedLine + endTag);
+    } else if ((/^\*.*\*$/).test(line)) {
+      var beginningTag = "<strong>";
+      var endTag = "</strong>";
+      var parsedLine = line.replace(/\*/g,'');
+      result_string = (beginningTag + parsedLine + endTag);
+    } else if ((/^_.*_$/).test(line)) {
+      var beginningTag = "<em>";
+      var endTag = "</em>";
+      var parsedLine = line.replace(/\_/g,'');
+      result_string = (beginningTag + parsedLine + endTag);
     } else {
-      return ("<p>" + line + "</p>");
+      result_string = ("<p>" + line + "</p>");
     }
+    return result_string
   }
 
   function displayParsedText(parsedText) {
