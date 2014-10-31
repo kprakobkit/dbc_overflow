@@ -1,16 +1,16 @@
+<div ng-controller="markDownController">
 <h2>New Question</h2>
-<%= form_for @question, remote: true, :html => { "ng-controller"=>"something" } do |f| %>
+<%= form_for @question, remote: true do |f| %>
 <%= f.label :title %>
 <p>
 <%= f.text_field :title %>
 </p>
 <%= f.label :content %>
 <p>
-<%= f.text_area :content, rows: 8, cols: 40, class: "to-markdown" %>
+<%= f.text_area :content, rows: 8, cols: 40, class: "to-markdown", "ng-model" => "inputText" %>
 </p>
-
 <h2>Preview Area</h2>
-<p class="preview-area"></p>
-
+<p> {{ parseInputText(inputText) }} </p>
+</div>
 <%= f.submit %>
 <% end %>
