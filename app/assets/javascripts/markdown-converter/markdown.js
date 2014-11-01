@@ -1,8 +1,8 @@
-angular.module('markDownApp', []).controller('markDownController', ['$scope', function($scope) {
+angular.module('markDownApp', ['ngSanitize']).controller('markDownController', ['$scope', function($scope) {
   $scope.inputText;
 
-  $scope.parseInputText = function(inputText) {
-    var lines = inputText.split(/\n/);
+  $scope.parseInputText = function() {
+    var lines = $scope.inputText.split(/\n/);
     var parsedLines = [];
     for (var i = 0; i < lines.length; i++) {
       parsedLines.push($scope.convertToHtml(lines[i]))
