@@ -1,9 +1,3 @@
 ##DBC Overflow
 
-##Models:
-- Question
- - title
- - content
-- Answer
- - title
- - content
+Stack Overflow clone - a lesson in Rails.
